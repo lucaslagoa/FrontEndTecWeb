@@ -1,0 +1,150 @@
+<div class="container-fluid" style="color:white">
+  <!----<div class="jumbotron">
+    <h1 class="display-4">Centro Acadêmico do Curso de Ciência da Computação</h1>
+  </div>-->
+ 
+          <button type="button" class="btn btn-success btn-sm"(click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar Projetos</button>&nbsp;<br>
+          <br>
+          <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Data</th>
+                <th scope="col">Membro 1</th>
+                <th scope="col">Membro 2</th>
+                <th scope="col">Membro 3</th>
+                <th scope="col">Observações</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let projetos of projetos">
+                <td>{{projetos.nomeProjeto}}</td>
+                <td>{{projetos.dataProjeto}}</td>
+                <td>{{projetos.membro1}}</td>
+                <td>{{projetos.membro2}}</td>
+                <td>{{projetos.membro3}}</td>
+                <td>{{projetos.observacoes}}</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm"(click)="editar(projetos,content)"><i class="fa fa-pencil"></i></button>&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="apagar(projetos)"><i class="fa fa-times"></i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-editar-projetos">Editar Projetos</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #projetosForm = "ngForm">
+      <div class="form-group">
+        <label for="nomeProjeto">Nome</label>
+        <div class="input-group">
+          <input id="nomeProjeto" class="form-control" ngModel = "{{projetosSelecionado.nomeProjeto}}" name = "nomeProjeto">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="dataProjeto">Data</label>
+        <div class="input-group">
+          <input id="dataProjeto" class="form-control" ngModel = "{{projetosSelecionado.dataProjeto}}" name = "dataProjeto">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="membro1">Membro 1</label>
+        <div class="input-group">
+          <input id="membro1" class="form-control" ngModel = "{{projetosSelecionado.membro1}}" name = "membro1">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="membro2">Membro 2</label>
+        <div class="input-group">
+          <input id="membro2" class="form-control" ngModel = "{{projetosSelecionado.membro2}}" name = "membro2">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="membro3">Membro 3</label>
+        <div class="input-group">
+          <input id="membro3" class="form-control" ngModel = "{{projetosSelecionado.membro3}}" name = "membro3">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="observacoes">Observações</label>
+        <div class="input-group">
+          <input id="observacoes" class="form-control" ngModel = "{{projetosSelecionado.observacoes}}" name = "observacoes">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(projetosForm)">Salvar</button>
+  </div>
+</ng-template>
+
+
+<hr>
+
+<pre>{{closeResult}}</pre>
+
+<ng-template #contentModalAdicionar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-adicionar-projetos">Adicionar Projetos</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #projetosFormAdicionar = "ngForm">
+        <div class="form-group">
+          <label for="nomeProjeto_adicionar">Nome</label>
+          <div class="input-group">
+            <input id="nomeProjeto" class="form-control" name = "nomeProjeto" [(ngModel)] = "projetosNovo.nomeProjeto" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="dataProjeto_adicionar">Data</label>
+          <div class="input-group">
+            <input id="dataProjeto" class="form-control"  name = "dataProjeto" [(ngModel)] = "projetosNovo.dataProjeto">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="membro1_adicionar">Membro 1</label>
+          <div class="input-group">
+            <input id="membro1" class="form-control" name = "membro1" [(ngModel)] = "projetosNovo.membro1">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="membro2_adicionar">Membro 2</label>
+          <div class="input-group">
+            <input id="membro2" class="form-control" name = "membro2" [(ngModel)] = "projetosNovo.membro2">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="membro3_adicionar">Membro 3</label>
+          <div class="input-group">
+            <input id="membro3" class="form-control" name = "membro3" [(ngModel)] = "projetosNovo.membro3">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="observacoes_adicionar">Observações</label>
+          <div class="input-group">
+            <input id="observacoes" class="form-control" name = "observacoes" [(ngModel)] = "projetosNovo.observacoes">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close(projetosFormAdicionar)">Salvar</button>
+    </div>
+  </ng-template>
+  
+  
+  <hr>
+  
+  <pre>{{closeResult}}</pre>

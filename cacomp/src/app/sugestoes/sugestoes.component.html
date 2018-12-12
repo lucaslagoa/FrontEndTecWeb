@@ -1,0 +1,95 @@
+<div class="container-fluid" style="color:white">
+  <!----<div class="jumbotron">
+    <h1 class="display-4">Centro Acadêmico do Curso de Ciência da Computação</h1>
+  </div>-->
+
+          <button type="button" class="btn btn-success btn-sm"(click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar Sugestões</button>&nbsp;<br>
+          <br>
+          <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let sugestoes of sugestoes">
+                <td>{{sugestoes.nomeSugestao}}</td>
+                <td>{{sugestoes.descricaoSugestao}}</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm"(click)="editar(sugestoes,content)"><i class="fa fa-pencil"></i></button>&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="apagar(sugestoes)"><i class="fa fa-times"></i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            
+
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-editar-sugestoes">Editar Sugestões</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #sugestoesForm = "ngForm">
+      <div class="form-group">
+        <label for="nomeSugestao">Nome</label>
+        <div class="input-group">
+          <input id="nomeSugestao" class="form-control" ngModel = "{{sugestoesSelecionado.nomeSugestao}}" name = "nomeSugestao">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="descricaoSugestao">Descrição</label>
+        <div class="input-group">
+          <input id="descricaoSugestao" class="form-control" ngModel = "{{sugestoesSelecionado.descricaoSugestao}}" name = "descricaoSugestao">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(sugestoesForm)">Salvar</button>
+  </div>
+</ng-template>
+
+
+<hr>
+
+<pre>{{closeResult}}</pre>
+
+<ng-template #contentModalAdicionar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-adicionar-sugestoes">Adicionar Sugestões</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #sugestoesFormAdicionar = "ngForm">
+        <div class="form-group">
+          <label for="nomeSugestao_adicionar">Nome</label>
+          <div class="input-group">
+            <input id="nomeSugestao" class="form-control" name = "nomeSugestao" [(ngModel)] = "sugestoesSelecionado.nomeSugestao" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="descricaoSugestao_adicionar">Descrição</label>
+          <div class="input-group">
+            <input id="descricaoSugestao" class="form-control"  name = "descricaoSugestao" [(ngModel)] = "sugestoesSelecionado.nomeSugestao">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close(sugestoesFormAdicionar)">Salvar</button>
+    </div>
+  </ng-template>
+  
+  
+  <hr>
+  
+  <pre>{{closeResult}}</pre>

@@ -1,0 +1,122 @@
+<div class="container-fluid" style="color:white">
+  <!----<div class="jumbotron">
+    <h1 class="display-4">Centro Acadêmico do Curso de Ciência da Computação</h1>
+  </div>-->
+ 
+          <button type="button" class="btn btn-success btn-sm"(click)="adicionar(contentModalAdicionar)"><i class="fa fa-plus"></i> Adicionar Reclamações</button>&nbsp;<br>
+          <br>
+          <table class="table table-hover">
+              <thead>
+              <tr>
+                <th scope="col">Nome</th>
+                <th scope="col">Matéria</th>
+                <th scope="col">Data</th>
+                <th scope="col">Assunto</th>
+                <th scope="col">&nbsp;</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let reclamacoes of reclamacoes">
+                <td>{{reclamacoes.nome}}</td>
+                <td>{{reclamacoes.materia}}</td>
+                <td>{{reclamacoes.data}}</td>
+                <td>{{reclamacoes.assunto}}</td>
+                <td>
+                  <button type="button" class="btn btn-success btn-sm"(click)="editar(reclamacoes,content)"><i class="fa fa-pencil"></i></button>&nbsp;
+                  <button type="button" class="btn btn-danger btn-sm" (click)="apagar(reclamacoes)"><i class="fa fa-times"></i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+            
+</div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-editar-reclamacoes">Editar Reclamações</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #reclamacoesForm = "ngForm">
+      <div class="form-group">
+        <label for="nome">Nome</label>
+        <div class="input-group">
+          <input id="nome" class="form-control" ngModel = "{{reclamacoesSelecionado.nome}}" name = "nome">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="materia">Matéria</label>
+        <div class="input-group">
+          <input id="materia" class="form-control" ngModel = "{{reclamacoesSelecionado.materia}}" name = "materia">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="data">Data</label>
+        <div class="input-group">
+          <input id="data" class="form-control" ngModel = "{{reclamacoesSelecionado.data}}" name = "data">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="assunto">Assunto</label>
+        <div class="input-group">
+          <input id="assunto" class="form-control" ngModel = "{{reclamacoesSelecionado.assunto}}" name = "assunto">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close(reclamacoesForm)">Salvar</button>
+  </div>
+</ng-template>
+
+
+<hr>
+
+<pre>{{closeResult}}</pre>
+
+<ng-template #contentModalAdicionar let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-adicionar-reclamacoes">Adicionar Reclamações</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form #reclamacoesFormAdicionar = "ngForm">
+        <div class="form-group">
+          <label for="nome_adicionar">Nome</label>
+          <div class="input-group">
+            <input id="nome" class="form-control" name = "nome" [(ngModel)] = "reclamacoesNovo.nome" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="materia_adicionar">Matéria</label>
+          <div class="input-group">
+            <input id="materia" class="form-control"  name = "materia" [(ngModel)] = "reclamacoesNovo.materia">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="data_adicionar">Data</label>
+          <div class="input-group">
+            <input id="data" class="form-control" name = "data" [(ngModel)] = "reclamacoesNovo.data">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="assunto_adicionar">Assunto</label>
+          <div class="input-group">
+            <input id="assunto" class="form-control" name = "assunto" [(ngModel)] = "reclamacoesNovo.assunto">
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close(reclamacoesFormAdicionar)">Salvar</button>
+    </div>
+  </ng-template>
+  
+  
+  <hr>
+  
+  <pre>{{closeResult}}</pre>
